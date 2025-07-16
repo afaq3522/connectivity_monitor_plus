@@ -12,6 +12,10 @@ to function correctly, ensuring a better user experience by providing timely fee
 * Customizable dialog content and appearance to match your app's theme.
 * Easy to integrate into any Flutter project.
 
+## Demo
+
+![Demo GIF](example/demo.gif)
+
 ## Getting started
 
 1. Add the package to your `pubspec.yaml` file:

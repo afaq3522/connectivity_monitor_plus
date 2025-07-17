@@ -13,7 +13,6 @@ class ConnectivityMonitor with ChangeNotifier {
   /// Returns true if the internet connection is being checked.
   bool isLoading = false;
 
-
   final _connectivityManager = Connectivity();
 
   /// Adds a listener to be notified of any changes in internet connectivity.

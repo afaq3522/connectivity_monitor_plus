@@ -16,7 +16,9 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
-        '/': (context) => ConnectivityWrapper(child: MyHomePage(title: 'Connectivity Monitor',)),
+        '/': (context) => ConnectivityWrapper(
+          child: MyHomePage(title: 'Connectivity Monitor'),
+        ),
         // When navigating to the "/second" route, build the SecondScreen widget.
       },
       theme: ThemeData(

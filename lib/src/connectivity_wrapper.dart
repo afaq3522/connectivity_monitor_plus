@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class ConnectivityWrapper extends StatefulWidget {
   /// The widget below this wrapper, shown when internet is available.
   final Widget child;
+
   /// A custom widget to display when there is no internet connection.
   /// If null, a default dialog will be shown.
   final Widget? dialogUi;

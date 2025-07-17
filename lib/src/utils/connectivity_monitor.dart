@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:http/http.dart' as http;
 
+/// A class that monitors the internet connectivity status and notifies listeners
+/// of any changes.
 class ConnectivityMonitor with ChangeNotifier {
   bool _hasInternet = true;
+
+  /// Returns true if there is internet connectivity.
   bool get hasInternet => _hasInternet;
 
+  /// Returns true if the internet connection is being checked.
   bool isLoading = false;
 
 
   final _connectivityManager = Connectivity();
 
+  /// Adds a listener to be notified of any changes in internet connectivity.
   ConnectivityMonitor() {
     _checkInternet();
     _listenInternet();
@@ -34,6 +40,7 @@ class ConnectivityMonitor with ChangeNotifier {
     notifyListeners();
   }
 
+  /// Checks if the internet connection is working.
   Future<bool> isInternetWorking() async {
     try {
       final response = await http

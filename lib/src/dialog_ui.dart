@@ -1,9 +1,12 @@
 import 'package:connectivity_monitor_plus/src/utils/connectivity_monitor.dart';
 import 'package:flutter/material.dart';
 
+/// A widget that shows a dialog when there is no internet connectivity.
 class DialogUi extends StatelessWidget {
+  /// Creates a [DialogUi] that shows a dialog when there is no internet connectivity.
   final ConnectivityMonitor connectivityMonitor;
 
+  /// Creates a [DialogUi] that shows a dialog when there is no internet connectivity.
   const DialogUi({super.key, required this.connectivityMonitor});
 
   @override
@@ -54,11 +57,6 @@ class DialogUi extends StatelessWidget {
                     if (connectivityMonitor.isLoading) {
                       return;
                     }
-                    /*  if (!connectivityMonitor.hasInternet) {
-                            KToast.showToast(
-                                context, "Please enable internet connection");
-                            return;
-                          }*/
                     connectivityMonitor.isLoading = true;
                     connectivityMonitor.isInternetWorking().then((check) {
                       connectivityMonitor.isLoading = false;
@@ -89,7 +87,7 @@ class DialogUi extends StatelessWidget {
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
-                            color: Colors.white
+                            color: Colors.white,
                           ),
                         ),
                 ),

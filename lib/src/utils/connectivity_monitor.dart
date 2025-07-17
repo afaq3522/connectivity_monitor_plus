@@ -13,10 +13,10 @@ class ConnectivityMonitor with ChangeNotifier {
   /// Returns true if the internet connection is being checked.
   bool isLoading = false;
 
-  final _connectivityManager = Connectivity();
+  final dynamic _connectivityManager;
 
   /// Adds a listener to be notified of any changes in internet connectivity.
-  ConnectivityMonitor() {
+  ConnectivityMonitor(this._connectivityManager) {
     _checkInternet();
     _listenInternet();
   }

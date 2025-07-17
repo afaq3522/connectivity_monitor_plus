@@ -1,5 +1,6 @@
 import 'package:connectivity_monitor_plus/src/dialog_ui.dart';
 import 'package:connectivity_monitor_plus/src/utils/connectivity_monitor.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 
 /// A widget that wraps its child and shows a dialog when there is no internet connectivity.
@@ -19,7 +20,7 @@ class ConnectivityWrapper extends StatefulWidget {
 }
 
 class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
-  final connectivityMonitor = ConnectivityMonitor();
+  final connectivityMonitor = ConnectivityMonitor(Connectivity());
   bool isDialogShowing = false;
 
   void _update() => setState(() {});

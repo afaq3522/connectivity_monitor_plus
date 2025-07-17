@@ -42,7 +42,7 @@ class ConnectivityMonitor with ChangeNotifier {
   /// Checks if the internet connection is working.
   Future<bool> isInternetWorking({bool isMock = false}) async {
     try {
-      if(isMock){
+      if (isMock) {
         return true;
       }
       final response = await http

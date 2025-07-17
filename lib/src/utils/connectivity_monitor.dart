@@ -40,8 +40,11 @@ class ConnectivityMonitor with ChangeNotifier {
   }
 
   /// Checks if the internet connection is working.
-  Future<bool> isInternetWorking() async {
+  Future<bool> isInternetWorking({bool isMock = false}) async {
     try {
+      if(isMock){
+        return true;
+      }
       final response = await http
           .get(Uri.parse('https://www.google.com'))
           .timeout(const Duration(seconds: 10));

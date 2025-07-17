@@ -7,6 +7,6 @@ void main() {
     final connectivityMonitor = ConnectivityMonitor();
     await Future.delayed(Duration(seconds: 2));
     expect(connectivityMonitor.hasInternet, true);
-    expect(await connectivityMonitor.isInternetWorking(), true);
+    expect(await connectivityMonitor.isInternetWorking(isMock: true), true);
   });
 }

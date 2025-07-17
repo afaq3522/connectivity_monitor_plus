@@ -1,12 +1,12 @@
+import 'package:connectivity_monitor_plus/src/mock/mock_connectivity_manager.dart';
+import 'package:connectivity_monitor_plus/src/utils/connectivity_monitor.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:connectivity_monitor_plus/connectivity_monitor_plus.dart';
-
 void main() {
-  test('adds one to input values', () {
-    // final calculator = Calculator();
-    // expect(calculator.addOne(2), 3);
-    // expect(calculator.addOne(-7), -6);
-    // expect(calculator.addOne(0), 1);
+  test('check connectivity', () async {
+    final connectivityMonitor = ConnectivityMonitor();
+    await Future.delayed(Duration(seconds: 2));
+    expect(connectivityMonitor.hasInternet, true);
+    expect(await connectivityMonitor.isInternetWorking(), true);
   });
 }

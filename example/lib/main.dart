@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       routes: {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => ConnectivityWrapper(
+          checkActualInternet: true,
           child: MyHomePage(title: 'Connectivity Monitor'),
         ),
         // When navigating to the "/second" route, build the SecondScreen widget.

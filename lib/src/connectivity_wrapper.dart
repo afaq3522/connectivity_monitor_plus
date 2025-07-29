@@ -12,22 +12,34 @@ class ConnectivityWrapper extends StatefulWidget {
   /// If null, a default dialog will be shown.
   final Widget? dialogUi;
 
+  ///if false it will not check actual internet connection
+  ///just show popup on connection state change
+  final bool checkActualInternet;
+
   /// Creates a [ConnectivityWrapper] that listens for connectivity changes.
-  const ConnectivityWrapper({super.key, required this.child, this.dialogUi});
+  const ConnectivityWrapper({
+    super.key,
+    required this.child,
+    this.dialogUi,
+    this.checkActualInternet = true,
+  });
 
   @override
   State<ConnectivityWrapper> createState() => _ConnectivityWrapperState();
 }
 
 class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
-  final connectivityMonitor = ConnectivityMonitor(Connectivity());
+  late ConnectivityMonitor connectivityMonitor;
   bool isDialogShowing = false;
 
   void _update() => setState(() {});
 
   @override
   void initState() {
-    connectivityMonitor.addListener(_update);
+    connectivityMonitor = ConnectivityMonitor(
+      Connectivity(),
+      checkActualInternet: widget.checkActualInternet,
+    )..addListener(_update);
     super.initState();
   }
 
@@ -40,6 +52,11 @@ class _ConnectivityWrapperState extends State<ConnectivityWrapper> {
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      //auto dispose dialog if internet is back
+      if (isDialogShowing && connectivityMonitor.hasInternet) {
+        Navigator.pop(context);
+        return;
+      }
       if (isDialogShowing || connectivityMonitor.hasInternet) {
         return;
       }

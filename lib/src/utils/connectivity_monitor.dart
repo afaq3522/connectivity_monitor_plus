@@ -13,10 +13,17 @@ class ConnectivityMonitor with ChangeNotifier {
   /// Returns true if the internet connection is being checked.
   bool isLoading = false;
 
+  ///main connectivity manager to listen state
   final dynamic _connectivityManager;
 
+  ///actual internet require
+  final bool checkActualInternet;
+
   /// Adds a listener to be notified of any changes in internet connectivity.
-  ConnectivityMonitor(this._connectivityManager) {
+  ConnectivityMonitor(
+    this._connectivityManager, {
+    required this.checkActualInternet,
+  }) {
     _checkInternet();
     _listenInternet();
   }
@@ -40,9 +47,9 @@ class ConnectivityMonitor with ChangeNotifier {
   }
 
   /// Checks if the internet connection is working.
-  Future<bool> isInternetWorking({bool isMock = false}) async {
+  Future<bool> isInternetWorking() async {
     try {
-      if (isMock) {
+      if (!checkActualInternet) {
         return true;
       }
       final response = await http

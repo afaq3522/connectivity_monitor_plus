@@ -4,9 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('check connectivity', () async {
-    final connectivityMonitor = ConnectivityMonitor(MockConnectivityManager());
+    final connectivityMonitor = ConnectivityMonitor(
+      MockConnectivityManager(),
+      checkActualInternet: false,
+    );
     await Future.delayed(Duration(seconds: 2));
     expect(connectivityMonitor.hasInternet, true);
-    expect(await connectivityMonitor.isInternetWorking(isMock: true), true);
+    expect(await connectivityMonitor.isInternetWorking(), true);
   });
 }
